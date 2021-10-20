@@ -4,7 +4,7 @@ namespace :vaccinated_people do
   desc "Import Vacccinated people date from CSV file"
   
   task import_csv: :environment do
-    file_path = "#{Rails.root}/lib/data_csv/BigBoy.csv"
+    file_path = "#{Rails.root}/lib/data_csv/vaccinated_people.csv"
     file = File.read(file_path)
     table = CSV.parse(file, headers: false, col_sep:";") 
     keys =["vaccine_reference","user_reference","last_vaccination_date"]

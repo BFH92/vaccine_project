@@ -5,10 +5,10 @@ Rails.application.routes.draw do
     resources :countries
     resources :vaccines
   
-  namespace :api do
+  #namespace :api do
     get 'vaccines-list' => "api#vaccines_available_by_country"
     post'update-tracking' => "api#update_vaccination_tracking"
- end
+ #end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

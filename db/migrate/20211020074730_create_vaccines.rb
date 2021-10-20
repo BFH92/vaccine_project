@@ -6,7 +6,6 @@ class CreateVaccines < ActiveRecord::Migration[6.1]
       t.text :composition
       t.integer :vaccine_booster_delay_in_days
       t.boolean :mandatory
-      t.text :available_country
 
       t.timestamps
     end

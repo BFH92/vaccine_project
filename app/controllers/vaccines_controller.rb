@@ -4,7 +4,7 @@ class VaccinesController < ApplicationController
   # GET /vaccines or /vaccines.json
   def index
     @vaccines = Vaccine.all
-
+render json:  @filtered_companies.as_json.first(20)
   end
 
   # GET /vaccines/1 or /vaccines/1.json
