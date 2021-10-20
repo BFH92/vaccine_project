@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vaccinated_people
   devise_for :admins
   resources :countries
   resources :vaccines

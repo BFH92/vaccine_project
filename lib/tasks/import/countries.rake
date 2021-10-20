@@ -6,13 +6,25 @@ namespace :countries do
     file_path = "#{Rails.root}/lib/data_csv/countries.csv"
     file = File.read(file_path)
     table = CSV.parse(file, headers: false, col_sep:";") 
-    
-    puts table[0][0]
-    puts table[0][1]
 
+    keys =["name","reference"]
+    tables = table.in_groups_of(1, false)   
+    array = []
+    tables.each do |values|
+      values.each do |i|
+      value = Hash[keys.zip(i)]
+      now = Time.now
+      value.store("created_at",now.to_s)
+      value.store("updated_at",now.to_s)
+      array << value
+
+    end
+    puts array.length
+    
+  end
+    Country.insert_all(array)
+  
     puts table.length
-    table= table.to_h
-    table.for
   #puts "Imported #{total_count} rows, #{duplicate_count} duplicate rows where not added"
   end
 end

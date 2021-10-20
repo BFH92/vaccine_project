@@ -1,18 +1,30 @@
 require 'csv'
-
+@started_at = Time.current 
 namespace :vaccinated_people do
   desc "Import Vacccinated people date from CSV file"
+  
   task import_csv: :environment do
     file_path = "#{Rails.root}/lib/data_csv/BigBoy.csv"
     file = File.read(file_path)
     table = CSV.parse(file, headers: false, col_sep:";") 
+    keys =["vaccine_reference","user_reference","last_vaccination_date"]
+    tables = table.in_groups_of(1, false)   
+    array = []
+    tables.each do |values|
+    values.each do |i|
+    value = Hash[keys.zip(i)]
+    now = Time.now
+    value.store("created_at",now.to_s)
+    value.store("updated_at",now.to_s)
+    array << value
+    #puts value
+    end
+    puts array.length
     
-    puts table[0][0]
-    puts table[0][1]
-
-    puts table.length
-    #table= table.to_h
-
-  #puts "Imported #{total_count} rows, #{duplicate_count} duplicate rows where not added"
   end
+    VaccinatedPerson.insert_all(array)
+  
+    puts table.length
+  end
+
 end
