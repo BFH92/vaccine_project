@@ -1,10 +1,10 @@
-class VaccinesController < ApiController
+class VaccinesController < ApplicationController
   before_action :set_vaccine, only: %i[ show edit update destroy ]
 
   # GET /vaccines or /vaccines.json
   def index
     @vaccines = Vaccine.all
-    render json: @vaccines
+
   end
 
   # GET /vaccines/1 or /vaccines/1.json

@@ -18,8 +18,6 @@ class VaccinatedPeopleController < ApiController
     end
   end
 
-  # PATCH/PUT /vaccinated_people/1
-  # PATCH/PUT /vaccinated_people/1.json
   def update
     if @vaccinated_person.update(vaccinated_person_params)
       render :show, status: :ok, location: @vaccinated_person
@@ -28,8 +26,6 @@ class VaccinatedPeopleController < ApiController
     end
   end
 
-  # DELETE /vaccinated_people/1
-  # DELETE /vaccinated_people/1.json
   def destroy
     @vaccinated_person.destroy
   end
