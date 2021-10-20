@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @vaccine.name %>
+</p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @vaccine.reference %>
+</p>
+
+<p>
+  <strong>Composition:</strong>
+  <%= @vaccine.composition %>
+</p>
+
+<p>
+  <strong>Vaccine booster delay in days:</strong>
+  <%= @vaccine.vaccine_booster_delay_in_days %>
+</p>
+
+<p>
+  <strong>Mandatory:</strong>
+  <%= @vaccine.mandatory %>
+</p>
+
+<p>
+  <strong>Available country:</strong>
+  <%= @vaccine.available_country %>
+</p>
+
+<%= link_to 'Edit', edit_vaccine_path(@vaccine) %> |
+<%= link_to 'Back', vaccines_path %>
