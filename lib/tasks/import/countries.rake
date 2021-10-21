@@ -19,12 +19,8 @@ namespace :countries do
       array << value
 
     end
-    puts array.length
     
   end
     Country.insert_all(array)
-  
-    puts table.length
-  #puts "Imported #{total_count} rows, #{duplicate_count} duplicate rows where not added"
-  end
+end
 end

@@ -1,0 +1,2 @@
+class VaccinatedPeople< ApplicationRecord
+end

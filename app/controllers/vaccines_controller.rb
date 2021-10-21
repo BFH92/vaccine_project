@@ -1,26 +1,26 @@
 class VaccinesController < ApplicationController
   before_action :set_vaccine, only: %i[ show edit update destroy ]
-
-  # GET /vaccines or /vaccines.json
+  before_action :authenticate_admin!
   def index
     @vaccines = Vaccine.all
-render json:  @filtered_companies.as_json.first(20)
+    @countries = Country.all
   end
 
-  # GET /vaccines/1 or /vaccines/1.json
   def show
+    @countries = Country.all
   end
 
-  # GET /vaccines/new
   def new
     @vaccine = Vaccine.new
   end
 
-  # GET /vaccines/1/edit
   def edit
+    @countries = Country.all
+    @vaccine_id = params[:id]
+    @vaccines_available_by_country = VaccineAvailableByCountry.all
+  
   end
 
-  # POST /vaccines or /vaccines.json
   def create
     @vaccine = Vaccine.new(vaccine_params)
 
@@ -35,12 +35,17 @@ render json:  @filtered_companies.as_json.first(20)
     end
   end
 
-  # PATCH/PUT /vaccines/1 or /vaccines/1.json
   def update
+    
+    @vaccine_id = params[:id]
+    @countries_where_vaccine_is_available = VaccineAvailableByCountry.where(vaccine_id:@vaccine_id)
+    @countries_registered = params[:country]
+    @new_tags = params[:new_tag]
     respond_to do |format|
       if @vaccine.update(vaccine_params)
         format.html { redirect_to @vaccine, notice: "Vaccine was successfully updated." }
         format.json { render :show, status: :ok, location: @vaccine }
+        @vaccine.update_countries(@countries_where_vaccine_is_available,@vaccine_id,@countries_registered)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @vaccine.errors, status: :unprocessable_entity }
@@ -48,7 +53,6 @@ render json:  @filtered_companies.as_json.first(20)
     end
   end
 
-  # DELETE /vaccines/1 or /vaccines/1.json
   def destroy
     @vaccine.destroy
     respond_to do |format|
@@ -58,12 +62,10 @@ render json:  @filtered_companies.as_json.first(20)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_vaccine
       @vaccine = Vaccine.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def vaccine_params
       params.require(:vaccine).permit(:name, :reference, :composition, :vaccine_booster_delay_in_days, :mandatory, :available_country)
     end

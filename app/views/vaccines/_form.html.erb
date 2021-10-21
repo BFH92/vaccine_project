@@ -37,9 +37,16 @@
   </div>
 
   <div class="field">
-    <%= form.label :available_country %>
-    <%= form.text_area :available_country %>
+    <%=form.label :countries %>
+    <div class="container__tags__form">
+      <% @countries.each do |country| %>
+        <div>
+          <input value=<%=country.id%> name="country[]" type="checkbox" <%= @vaccines_available_by_country  != nil ? (@vaccines_available_by_country.find_by(vaccine_id:@vaccine_id, country_id: country.id)? "checked" : "" ) : "" %> ><%= country.name %>
+        </div>
+      <%end%>
+    </div>
   </div>
+
 
   <div class="actions">
     <%= form.submit %>

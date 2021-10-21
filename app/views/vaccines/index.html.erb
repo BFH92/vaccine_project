@@ -23,7 +23,9 @@
         <td><%= vaccine.composition %></td>
         <td><%= vaccine.vaccine_booster_delay_in_days %></td>
         <td><%= vaccine.mandatory %></td>
-        <td><%= vaccine.available_country %></td>
+        <td>   
+            <%=countries_of(vaccine)%>
+        </td>
         <td><%= link_to 'Show', vaccine %></td>
         <td><%= link_to 'Edit', edit_vaccine_path(vaccine) %></td>
         <td><%= link_to 'Destroy', vaccine, method: :delete, data: { confirm: 'Are you sure?' } %></td>

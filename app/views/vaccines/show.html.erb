@@ -26,8 +26,8 @@
 </p>
 
 <p>
-  <strong>Available country:</strong>
-  <%= @vaccine.available_country %>
+<strong>Available country:</strong>
+  <%= countries_of(@vaccine)%>  
 </p>
 
 <%= link_to 'Edit', edit_vaccine_path(@vaccine) %> |

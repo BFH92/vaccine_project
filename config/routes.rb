@@ -1,14 +1,7 @@
 Rails.application.routes.draw do
-  resources :vaccinated_people
-  devise_for :admins
-
-    resources :countries
-    resources :vaccines
-  
-  #namespace :api do
-    get 'vaccines-list' => "api#vaccines_available_by_country"
+    devise_for :admins
+    resources  :countries
+    resources  :vaccines
+    get 'vaccines-list' => "api#get_vaccines_datas_by_country_and_user"
     post'update-tracking' => "api#update_vaccination_tracking"
- #end
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+ end
