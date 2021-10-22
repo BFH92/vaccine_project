@@ -23,6 +23,7 @@ namespace :vaccinated_people do
       keys =["vaccine_reference","user_reference","last_vaccination_date"]
       all_people = csv_rows.in_groups_of(1, false)   
       list = []
+      
       all_people.each do |people|
         people.each do |value|
           vaccinated_people_data = Hash[keys.zip(value)]
@@ -32,6 +33,7 @@ namespace :vaccinated_people do
           list << vaccinated_people_data
         end
       end
+
       VaccinatedPeople.upsert_all(list)#TODO: voir sur quel critères l'upsert se fait
       puts "#{list.length} vaccinated_person added to db"
     end

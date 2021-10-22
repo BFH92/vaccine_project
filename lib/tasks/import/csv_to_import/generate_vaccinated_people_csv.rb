@@ -10,5 +10,4 @@ CSV.open("./vaccinated_people.csv", "wb",col_sep: ';') do |csv|
   time = Time.at(rand(0.95..1) * Time.now.to_f).to_date
   csv << [array.sample,"user#{rand(1..1000)}",time]
   end
-  # ...
 end

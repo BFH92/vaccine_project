@@ -17,7 +17,7 @@ class ApiController < ApplicationController
   end
 
   def update_vaccination_tracking
-    @new_data= VaccinatedPeople.find_by(user_reference:@user_ref,vaccine_reference: @vaccine_ref)
+    @new_data= VaccinatedPeople.where(user_reference:@user_ref,vaccine_reference: @vaccine_ref).last
      @new_data.nil? ? 
      @new_data = VaccinatedPeople.create(tracking_params) : @new_data.update(tracking_params)
      render json: @new_data
