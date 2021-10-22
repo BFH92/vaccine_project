@@ -20,7 +20,6 @@ VACCINE_NAMES.length.times do |i|
     mandatory: true_false.sample
   )
 end
-Vaccine.create!(name:"TEST", reference:"TST",composition:"nothing",vaccine_booster_delay_in_days:12,mandatory:true)
 @vaccines = Vaccine.all
 @vaccines.length.times do 
   number_of_countries = rand(2..5)

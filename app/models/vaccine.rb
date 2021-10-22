@@ -1,8 +1,8 @@
 class Vaccine < ApplicationRecord
   has_many :vaccine_available_by_countries
   has_many :countries, through: :vaccine_available_by_countries
-  validates_uniqueness_of :name, scope: [:name, :reference] 
-  
+#  validates_uniqueness_of :name, scope: [:name, :reference] 
+
   def update_countries(countries_where_vaccine_is_available,vaccine_id,countries)
     countries_where_vaccine_is_available.each do |country_available_in|
       if !(country_available_in.vaccine_id ==  vaccine_id && countries != nil ? @countries.include?(country_available_in.vaccine_id): false)

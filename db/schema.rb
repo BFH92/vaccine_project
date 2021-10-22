@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2021_10_20_141753) do
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string "name"
-    t.string "reference"
+    t.string "name", default: "0", null: false
+    t.string "reference", default: "0", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_141753) do
   create_table "vaccinated_people", force: :cascade do |t|
     t.string "vaccine_reference"
     t.string "user_reference"
+    t.string "uniq_reference"
     t.date "last_vaccination_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

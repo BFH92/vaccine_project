@@ -26,7 +26,7 @@ class ApiController < ApplicationController
   private 
   def tracking_params
     defaults = {:last_vaccination_date =>Time.now.to_date}
-    params.permit(:user_reference,:vaccine_reference,:last_vaccination_date).reverse_merge(defaults)
+    params.permit(:user_reference,:vaccine_reference,:last_vaccination_date,:uniq_reference).reverse_merge(defaults)
   end
   def set_country_id
     @country_reference = params[:country]

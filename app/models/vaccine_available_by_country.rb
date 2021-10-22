@@ -1,7 +1,7 @@
 class VaccineAvailableByCountry < ApplicationRecord
-  belongs_to :country
-  belongs_to :vaccine
-  validates_uniqueness_of :country_id, scope: [:country_id, :vaccine_id] 
+  belongs_to :country, optional: true
+  belongs_to :vaccine, optional: true
+  #validates_uniqueness_of :country_id, scope: [:country_id, :vaccine_id] 
 
 
   @vaccines_available = VaccineAvailableByCountry.where(country_id:@country_id)
