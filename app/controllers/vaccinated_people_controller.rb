@@ -1,16 +1,8 @@
 class VaccinatedPeopleController < ApiController
-  before_action :set_vaccinated_person, only: %i[ show update destroy ]
-
-  def index
-    @vaccinated_people = VaccinatedPeople.all
-  end
-
-  def show
-  end
+  before_action :set_vaccinated_person, only: %i[update destroy ]
 
   def create
     @vaccinated_person = VaccinatedPeople.new(vaccinated_person_params)
-
     if @vaccinated_person.save
       render json: @vaccinated_person, status: :created, location: @vaccinated_person
     else

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Vaccines</h1>
-
+<%= link_to 'previous page', vaccines_path(page:@previous_page) %> <%= link_to 'next page', vaccines_path(page:@next_page) %>
 <table>
   <thead>
     <tr>

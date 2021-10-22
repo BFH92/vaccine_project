@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
   before_action :set_country, only: %i[ show edit update destroy ]
   before_action :authenticate_admin!
+  
   def index
     @countries = Country.all
   end
@@ -14,7 +15,6 @@ class CountriesController < ApplicationController
 
   def create
     @country = Country.new(country_params)
-
     respond_to do |format|
       if @country.save
         format.html { redirect_to @country, notice: "Country was successfully created." }

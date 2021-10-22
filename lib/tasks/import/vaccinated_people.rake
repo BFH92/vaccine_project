@@ -3,7 +3,6 @@ require 'csv'
 @started_at = Time.current 
 namespace :vaccinated_people do
   desc "Import Vacccinated people date from CSV file"
-  #TODO: renaming de variables
   task import_csv: :environment do
     def import_data
     input = ''
