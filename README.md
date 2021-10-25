@@ -11,7 +11,7 @@ Things you may want to cover:
 * initialization :
   bundle install
   rails db:migrate db:seed
-  
+
 * backoffice views :
   run $rails s  
   login/sign_up :
@@ -57,7 +57,7 @@ Things you may want to cover:
 
 
 * How to run Test : 
-  1/ disable/ comment the line "before_action :authenticate_admin!" on the top of vaccines &   countries controller to pass all the tests.
+  1. disable/ comment the line "before_action :authenticate_admin!" on the top of vaccines &  countries controller to pass all the tests.
 
-  2 / run $rspec (for all models & controllers)
+  2. run $rspec (for all models & controllers)
   
