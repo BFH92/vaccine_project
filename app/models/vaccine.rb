@@ -1,12 +1,11 @@
 class Vaccine < ApplicationRecord
   has_many :vaccine_available_by_countries, dependent: :destroy
   has_many :countries, through: :vaccine_available_by_countries
-  validates :name, presence: true
-  validates :reference, presence: true
+  validates :name, uniqueness: true, presence: true
+  validates :reference,uniqueness: true, presence: true
   validates :composition, presence: true
   validates :vaccine_booster_delay_in_days, presence: true
   validates :mandatory, presence: true
-  validates_uniqueness_of :name, scope: [:name, :reference] 
 
 
   def update_countries(countries_where_vaccine_is_available,countries)

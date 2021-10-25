@@ -9,8 +9,8 @@ Things you may want to cover:
 * Rails: 6.1.4.1
 
 * initialization :
-  bundle install
-  rails db:migrate db:seed
+  $bundle install
+  $rails db:migrate db:seed
 
 * backoffice views :
   run $rails s  
