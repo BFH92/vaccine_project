@@ -7,6 +7,8 @@ Things you may want to cover:
 
 * Ruby version: 2.7.3
 * Rails: 6.1.4.1
+* dependencies : if you hav a problem with webpack: 
+  run $bundle exec rails webpacker:install 
 
 * initialization :
   $bundle install
@@ -44,6 +46,7 @@ Things you may want to cover:
     please refer to the countries list generated on your db to have the correct references ! 
 
     example (depend on countries association created by Seed)
+    method GET
     Italia, page 1 => http://localhost:3000/vaccines-list?country=ITA&page=1
 
 
@@ -51,13 +54,14 @@ Things you may want to cover:
     There are two parameters  : the user reference & the vaccine_reference.
 
     example (depend on your db) :
+    methode POST 
     http://localhost:3000/update-tracking?&user_reference=user403&vaccine_reference=MMRVXPR
 
     you could pass parameters through json too.
 
 
 * How to run Test : 
-  1. disable/ comment the line "before_action :authenticate_admin!" on the top of vaccines &  countries controller to pass all the tests.
+  1. disable/ comment the line "before_action :authenticate_admin!" on the top of vaccines & countries controller to pass all the tests 
 
   2. run $rspec (for all models & controllers)
   
