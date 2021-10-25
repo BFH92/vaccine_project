@@ -17,17 +17,21 @@ VACCINE_NAMES.length.times do |i|
     reference: VACCINE_NAMES[i].upcase.gsub(/[A,E,I,O,U,Y,\s,.,-]/,""),
     composition: COMPONENTS.sample(rand(3..8)).join(','),
     vaccine_booster_delay_in_days:rand(60..1825),
-    mandatory: true_false.sample
+    mandatory: true || false
   )
 end
 @vaccines = Vaccine.all
 @vaccines.length.times do 
   number_of_countries = rand(2..5)
   number_of_countries.times do 
+  begin
   available_vaccine = VaccineAvailableByCountry.create!(
     country_id: rand(1..249),
     vaccine_id: rand(1..Vaccine.all.count)
   )
+  rescue
+    puts "error"
+  end
+end
 end
 
-end

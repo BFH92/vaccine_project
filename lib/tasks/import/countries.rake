@@ -9,7 +9,6 @@ namespace :countries do
         @file = File.read(file_path)
         return @file
       end
-
       def add_existing_countries_to(list)
         existing_countries = Country.all
         existing_countries.each do |data|
@@ -38,7 +37,6 @@ namespace :countries do
         end
       
       end
-    
       def add_countries_to_db_from(list)
         list.uniq!{ |p| p[:name] }
         Country.delete_all

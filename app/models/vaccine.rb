@@ -1,19 +1,28 @@
 class Vaccine < ApplicationRecord
-  has_many :vaccine_available_by_countries
+  has_many :vaccine_available_by_countries, dependent: :destroy
   has_many :countries, through: :vaccine_available_by_countries
-#  validates_uniqueness_of :name, scope: [:name, :reference] 
+  validates :name, presence: true
+  validates :reference, presence: true
+  validates :composition, presence: true
+  validates :vaccine_booster_delay_in_days, presence: true
+  validates :mandatory, presence: true
+  validates_uniqueness_of :name, scope: [:name, :reference] 
 
-  def update_countries(countries_where_vaccine_is_available,vaccine_id,countries)
+
+  def update_countries(countries_where_vaccine_is_available,countries)
+    #if countries_where_vaccine_is_available != nil 
     countries_where_vaccine_is_available.each do |country_available_in|
-      if !(country_available_in.vaccine_id ==  vaccine_id && countries != nil ? @countries.include?(country_available_in.vaccine_id): false)
-        country_available_in.destroy
+        if !(country_available_in.vaccine_id == self.id && countries != nil ? countries.include?(country_available_in.vaccine_id): false)
+          country_available_in.destroy
+        end
       end
-    end
+  #  end
     if countries != nil 
       countries.each do |country|
-        VaccineAvailableByCountry.create!(vaccine_id: vaccine_id, country_id: country.to_i)
+        VaccineAvailableByCountry.create!(vaccine_id: self.id, country_id: country.to_i)
       end
     end
+  
   end
 
   def add_global_infos(hash, vaccine_available)
@@ -22,7 +31,17 @@ class Vaccine < ApplicationRecord
     hash.store("composition",self.composition)
     self.mandatory ? hash.store("mandatory","yes") : hash.store("mandatory","no")
     countries = VaccineAvailableByCountry.where(vaccine_id: self.id)
-    hash.store("available_countries", vaccine_available.countries_of(self))
+    hash.store("available_countries", self.get_countries_names)
+    
+  end
+  def get_countries_names
+    @countries = Country.all
+    list = []
+    self.countries.ids.map do |country|  
+    list << @countries.find(country).name
+    end
+    list.join(",")
+    return list
   end
 
   def add_user_injections_infos(user_ref,hash)

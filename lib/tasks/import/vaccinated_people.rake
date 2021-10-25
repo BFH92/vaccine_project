@@ -27,7 +27,7 @@ namespace :vaccinated_people do
       already_vaccinated_people = VaccinatedPeople.all
       already_vaccinated_people.each do |data|
         uniq_ref = data["vaccine_reference"]+data["user_reference"]
-        vaccinated_people = Hash.new
+        vaccinated_people_data = Hash.new
         vaccinated_people_data.store(:vaccine_reference, data["vaccine_reference"])
         vaccinated_people_data.store(:user_reference, data["user_reference"])
         vaccinated_people_data.store(:last_vaccination_date, data["last_vaccination_date"])
@@ -64,9 +64,10 @@ namespace :vaccinated_people do
       list = []
       config_csv()
       retrieve_data_from_db_to(list)
+      list_csv_data_excluded = list.length
       add_csv_to(list)
       insert_data_to_db_from(list)
-      puts "add #{list.length} entries to DB via rake time = #{Time.now - @started_time} seconds"
+      puts "add new #{list.length - list_csv_data_excluded} entries to DB on existing #{list.length} entries, via rake | time = #{Time.now - @started_time} seconds"
     end
     import_data()
   end  

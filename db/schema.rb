@@ -28,24 +28,24 @@ ActiveRecord::Schema.define(version: 2021_10_20_141753) do
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string "name", default: "0", null: false
-    t.string "reference", default: "0", null: false
+    t.string "name", default: "", null: false
+    t.string "reference", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "vaccinated_people", force: :cascade do |t|
-    t.string "vaccine_reference"
-    t.string "user_reference"
-    t.string "uniq_reference"
-    t.date "last_vaccination_date"
+    t.string "vaccine_reference", default: "", null: false
+    t.string "user_reference", default: "", null: false
+    t.string "uniq_reference", default: "", null: false
+    t.date "last_vaccination_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "vaccine_available_by_countries", force: :cascade do |t|
-    t.bigint "vaccine_id"
-    t.bigint "country_id"
+    t.bigint "vaccine_id", null: false
+    t.bigint "country_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["country_id"], name: "index_vaccine_available_by_countries_on_country_id"
@@ -53,11 +53,11 @@ ActiveRecord::Schema.define(version: 2021_10_20_141753) do
   end
 
   create_table "vaccines", force: :cascade do |t|
-    t.string "name"
-    t.string "reference"
-    t.text "composition"
-    t.integer "vaccine_booster_delay_in_days"
-    t.boolean "mandatory"
+    t.string "name", default: "", null: false
+    t.string "reference", default: "", null: false
+    t.text "composition", default: "", null: false
+    t.integer "vaccine_booster_delay_in_days", null: false
+    t.boolean "mandatory", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

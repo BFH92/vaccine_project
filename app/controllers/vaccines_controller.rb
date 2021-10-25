@@ -32,13 +32,14 @@ class VaccinesController < ApplicationController
   end
 
   def update
+    
     @countries_where_vaccine_is_already_available = VaccineAvailableByCountry.where(vaccine_id:@vaccine_id)
     @countries_updated = params[:country]
     respond_to do |format|
       if @vaccine.update(vaccine_params)
         format.html { redirect_to @vaccine, notice: "Vaccine was successfully updated." }
         format.json { render :show, status: :ok, location: @vaccine }
-        @vaccine.update_countries(@countries_where_vaccine_is__already_available,@vaccine_id,@countries_updated)
+        @vaccine.update_countries(@countries_where_vaccine_is_already_available,@countries_updated)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @vaccine.errors, status: :unprocessable_entity }

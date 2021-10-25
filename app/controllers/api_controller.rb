@@ -25,8 +25,8 @@ class ApiController < ApplicationController
 
   private 
   def tracking_params
-    defaults = {:last_vaccination_date =>Time.now.to_date}
-    params.permit(:user_reference,:vaccine_reference,:last_vaccination_date,:uniq_reference).reverse_merge(defaults)
+    defaults = {:last_vaccination_date =>Time.now.to_date,:uniq_reference=>@user_ref+@vaccine_ref}
+    params.permit(:user_reference,:vaccine_reference).reverse_merge(defaults)
   end
   def set_country_id
     @country_reference = params[:country]
@@ -40,7 +40,7 @@ class ApiController < ApplicationController
   end
   def set_pagination
     page = params[:page].to_i || 1
-    @results_by_page = 100
+    @results_by_page = 20
     @pagination_starting = (page - 1) * @results_by_page
   end
 
