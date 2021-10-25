@@ -4,5 +4,4 @@ class Country < ApplicationRecord
   validates_uniqueness_of :name, scope: [:name, :reference] 
   validates :name, presence: true
   validates :reference, presence: true
-
 end

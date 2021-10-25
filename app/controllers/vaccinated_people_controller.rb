@@ -23,12 +23,9 @@ class VaccinatedPeopleController < ApiController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_vaccinated_people
       @vaccinated_people = VaccinatedPeople.find(params[:id])
     end
-
-    # Only allow a list of trusted parameters through.
     def vaccinated_people_params
       params.require(:vaccinated_people).permit(:vaccine_reference, :user_reference, :last_vaccination_date,:uniq_reference)
     end
