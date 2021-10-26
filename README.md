@@ -1,13 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
 
 * Ruby version: 2.7.3
 * Rails: 6.1.4.1
-* dependencies : if you hav a problem with webpack: 
+* dependencies : if you have a problem with webpack: 
   run $bundle exec rails webpacker:install 
 
 * initialization :
@@ -17,7 +13,7 @@ Things you may want to cover:
 * backoffice views :
   run $rails s  
   login/sign_up :
-  As admin, you hav to sign up via devise, to have access to vaccines and countries dashboard
+  As admin, you have to sign up via devise, to have access to vaccines and countries dashboard
 
   
 
